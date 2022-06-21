@@ -5,7 +5,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "start": "nuxt preview"
+    "start": "node_modules/nuxt/bin/nuxt.js start -c ./nuxt.config.js",
+    "heroku-postbuild": "npm run build"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.2.1",
