@@ -5,14 +5,5 @@ export default defineNuxtConfig({
   css: ['@/assets/styles/style.sass'],
   plugins: [
     { src: '@/plugins/aos', ssr: false, mode: 'client' }
-  ],
-  // vite: {
-  //   css: {
-  //     loaderOptions: {
-  //       sass: {
-  //         additionalData: `@import "@/assets/styles/style.sass";`,
-  //       }
-  //     }
-  //   }
-  // }
+  ]
 })
