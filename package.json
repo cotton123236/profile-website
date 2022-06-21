@@ -5,7 +5,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "start": "nuxt start"
+    "start": "nuxt preview"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.2.1",
