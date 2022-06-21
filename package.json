@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "@nuxtjs/style-resources": "^1.2.1",
+    "@pinia/nuxt": "^0.1.8",
+    "nuxt": "3.0.0-rc.4",
+    "sass-loader": "^13.0.0"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "gsap": "^3.10.4",
+    "pinia": "^2.0.11",
+    "sass": "^1.52.3"
+  }
+}
