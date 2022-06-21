@@ -1,0 +1,1 @@
+import{_ as r,a as t,c as a,f as s}from"./entry-086f568e.mjs";const c={},o={class:"__nuxt-wrapper"};function _(e,n){return t(),a("div",o,[s(e.$slots,"default")])}var l=r(c,[["render",_]]);export{l as default};
