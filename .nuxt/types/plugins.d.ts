@@ -10,6 +10,7 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/nuxt/dist/head/runtime/lib/vueuse-head.plugin").default> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/head/runtime/plugin").default> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/router").default> &
+  InjectionType<typeof import("../dist.plugin.e101faba").default> &
   InjectionType<typeof import("@/plugins/aos").default> &
   InjectionType<typeof import("../../plugins/aos").default>
 
