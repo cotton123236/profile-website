@@ -5,6 +5,8 @@ export default defineNuxtConfig({
   css: ['@/assets/styles/style.sass'],
   buildModules: ['@pinia/nuxt'],
   plugins: [
-    { src: '@/plugins/aos', ssr: false, mode: 'client' }
+    { src: '@/plugins/aos', ssr: false, mode: 'client' },
+    { src: '@/plugins/anchor', ssr: false, mode: 'client' },
+    { src: '@/plugins/cotton', ssr: false, mode: 'client' }
   ]
 })

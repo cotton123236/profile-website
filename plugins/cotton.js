@@ -1,8 +1,7 @@
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import Cotton from 'cottonjs'
 
 export default defineNuxtPlugin(nuxtApp => {
   if (typeof window !== 'undefined') {
-    nuxtApp.AOS = AOS.init()
+    nuxtApp.Cotton = Cotton
   }
 })

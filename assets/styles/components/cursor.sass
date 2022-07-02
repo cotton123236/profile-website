@@ -1,0 +1,26 @@
+.cursor
+  position: fixed
+  z-index: 99
+  top: 0
+  left: 0
+  pointer-events: none
+  mix-blend-mode: difference
+  transition: opacity var(--trans-m)
+  &.explore
+    .cursor-ball
+      width: 80px
+      height: 80px
+      margin-left: -40px
+      margin-top: -40px
+  .cursor-ball
+    position: absolute
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 50px
+    height: 50px
+    margin-left: -25px
+    margin-top: -25px
+    border-radius: 50%
+    background-color: var(--white)
+    transition: var(--trans-m)

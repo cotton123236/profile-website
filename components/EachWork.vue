@@ -1,15 +1,52 @@
 <script setup>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
 defineProps({
   work: Object
+})
+
+const parallaxWrap = ref(null)
+const parallaxImage = ref(null)
+const translateX = ref(0)
+
+// parallax
+const useParallax = () => {
+  gsap.to(parallaxImage.value, {
+    scrollTrigger: {
+      trigger: 'section.works',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true,
+      onUpdate: self => {
+        const wrapRect = parallaxWrap.value.getBoundingClientRect()
+        const imageRect = parallaxImage.value.getBoundingClientRect()
+        const diff = imageRect.width - wrapRect.width
+        translateX.value = diff * self.progress
+      }
+    }
+  })
+}
+
+onMounted(() => {
+  useParallax()
 })
 </script>
 
 <template>
-  <div class="each-work">
-    {{ work.name }}
-  </div>
+  <li class="each-work" ref="parallaxWrap">
+    <a :href="work.href" target="_blank" data-cotton="explore">
+      <div class="photo-box">
+        <div class="photo" ref="parallaxImage" :style="{transform: `translate3d(${translateX}px, 0, 0)`}">
+          <img :src="work.image" alt="">
+        </div>
+      </div>
+      <div class="text-box">
+        <div class="title">{{ work.title }}</div>
+        <div class="sub-title">{{ work.subTitle }}</div>
+      </div>
+    </a>
+  </li>
 </template>
-
-<style lang="sass">
-
-</style>

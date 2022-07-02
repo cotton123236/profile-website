@@ -1,8 +1,7 @@
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import Anchor from './anchor4/anchor4'
 
 export default defineNuxtPlugin(nuxtApp => {
   if (typeof window !== 'undefined') {
-    nuxtApp.AOS = AOS.init()
+    nuxtApp.Anchor = Anchor
   }
 })

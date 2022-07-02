@@ -1,5 +1,6 @@
 <script setup>
 import { gsap } from 'gsap'
+import gsapCore from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { storeToRefs } from 'pinia'
 import { useIndexStore } from './../store/index'
@@ -11,15 +12,21 @@ const indexStore = useIndexStore()
 
 // setting head
 useHead({
-  title: 'Wilson\'s Profile',
+  title: 'Wilson\'s Profile'
 })
 
-
-// section intro
+// define Refs
 const introVideo = ref(null)
 const introTitle = ref(null)
 const introBrief = ref(null)
-const { works } = storeToRefs(indexStore)
+const worksContent = ref(null)
+const worksUl = ref(null)
+const { about, works, projects } = storeToRefs(indexStore)
+const { updateIndexData } = indexStore
+
+// fetch data
+const { data } = await useFetch('https://wilson-backend.herokuapp.com/api/index')
+updateIndexData(data.value.data)
 
 
 // change intro video speed
@@ -37,10 +44,12 @@ const useSplitText = () => {
     el.innerHTML = nexText
     el.classList.add('split-active')
   })
+  introTitle.value.classList.add('white')
+  introBrief.value.classList.add('white')
 }
 
-// intro text animation
-const useIntroText = () => {
+// intro animation
+const useIntroAnimate = () => {
   let now = 0
   const children = introTitle.value.children
   const duration = 1200
@@ -57,6 +66,12 @@ const useIntroText = () => {
       now += 1
     }
     else {
+      setTimeout(() => {
+        gsap.to('.intro .intro-wrap', { opacity: 0, scale: 0.3, rotate: '-8deg' })
+        gsap.to('.bg-cover video', { scale: 1, rotate: '0deg' })
+        gsap.to('.bg-cover .color-wrap.intro-bg', { opacity: 0 })
+        document.body.classList.add('dark-mode')
+      }, 1000)
       return clearInterval(textAnimation)
     }
   }
@@ -66,7 +81,7 @@ const useIntroText = () => {
 onMounted(() => {
   useVideoSpeed()
   useSplitText()
-  useIntroText()
+  useIntroAnimate()
 })
 
 
@@ -80,52 +95,89 @@ const useGsap = () => {
   }
   const introBotTrigger = {
     trigger: 'section.intro',
-    start: '71% bottom',
+    start: '5% top',
     end: 'bottom bottom',
     scrub: true,
+  }
+  const worksTrigger = {
+    trigger: 'section.works .scroll-detect',
+    endTrigger: 'section.works',
+    start: 'bottom bottom',
+    end: 'bottom bottom',
+    scrub: true
   }
   ScrollTrigger.matchMedia({
     // desktop animation
     "(min-width: 768px)": function() {
       gsap.to('.bg-cover video', {
-        scale: 1,
-        opacity: .5,
-        rotate: '0deg',
-        scrollTrigger: { ...introTopTrigger }
-      })
-      gsap.to('.bg-cover video', {
         filter: 'grayscale(.2)',
         '-webkit-filter': 'grayscale(.2)',
-        scrollTrigger: { ...introBotTrigger, start: '70% bottom', end: '75% bottom' }
+        scrollTrigger: { ...introBotTrigger, start: '0 top', end: '5% top' }
+      })
+      gsap.to('.bg-cover .color-wrap.profile-bg', {
+        opacity: 0,
+        scrollTrigger: { ...introBotTrigger },
       })
       gsap.to('.bg-cover .image-wrap', {
         scale: 3.7,
-        opacity: .5,
+        opacity: .4,
         rotate: '-5deg',
         scrollTrigger: { ...introBotTrigger }
       })
-      gsap.to('.bg-cover .color-wrap', {
-        opacity: 0,
-        scrollTrigger: { ...introBotTrigger }
-      })
-      gsap.to('.intro .intro-wrap', {
-        opacity: 0,
-        scale: 0.3,
-        rotate: '-8deg',
+      gsap.to('.intro .scroll-detect', {
         scrollTrigger: {
-          ...introTopTrigger,
-          end: '60% bottom',
+          trigger: '.intro .scroll-detect',
+          start: 'top top',
+          end: 'bottom top',
+          onEnter: () => document.body.classList.remove('dark-mode'),
+          onLeaveBack: () => document.body.classList.add('dark-mode')
         }
       })
       gsap.to('.intro .profile-wrap', {
         scale: 1,
         opacity: 1,
         rotate: 0,
-        scrollTrigger: { ...introBotTrigger, start: '74% bottom' }
+        scrollTrigger: { ...introBotTrigger, start: '8% top' }
       })
       gsap.to('.intro .profile-wrap .headshot', {
         scale: 1,
-        scrollTrigger: { ...introBotTrigger, start: '74% bottom' }
+        filter: 'grayscale(.2)',
+        '-webkit-filter': 'grayscale(.2)',
+        scrollTrigger: { ...introBotTrigger, start: '13% top' }
+      })
+      gsap.timeline()
+      .to('.bg-cover .color-wrap.works-bg', {
+        opacity: .9,
+        scrollTrigger: {
+          trigger: '.works',
+          start: '-5% top',
+          end: 'top top',
+          scrub: true,
+          onEnter: () => document.body.classList.add('dark-mode'),
+          onLeaveBack: () => document.body.classList.remove('dark-mode')
+        }
+      })
+      .to('.bg-cover .color-wrap.works-bg', {
+        opacity: 0,
+        scrollTrigger: {
+          trigger: '.works',
+          start: 'bottom top',
+          end: '105% top',
+          scrub: true,
+          onEnterBack: () => document.body.classList.add('dark-mode'),
+          onLeave: () => document.body.classList.remove('dark-mode')
+        }
+      })
+      gsap.to(worksUl.value, {
+        scrollTrigger: {
+          ...worksTrigger,
+          onUpdate: self => {
+            const ulWidth = worksUl.value.offsetWidth
+            const contentWidth = worksContent.value.offsetWidth
+            const diff = (contentWidth - ulWidth) * self.progress
+            worksContent.value.style.transform = `translate3d(${diff}px, 0, 0)`
+          }
+        }
       })
     },
     // mobile animation
@@ -152,6 +204,7 @@ const useGsap = () => {
   })
 }
 
+
 onMounted(() => {
   useGsap()
 })
@@ -160,9 +213,12 @@ onMounted(() => {
 
 <template>
   <main>
+    <Cursor />
     <div class="noise-cover"></div>
     <div class="bg-cover">
-      <div class="color-wrap"></div>
+      <div class="color-wrap intro-bg"></div>
+      <div class="color-wrap profile-bg"></div>
+      <div class="color-wrap works-bg"></div>
       <div class="image-wrap">
         <video src="@/assets/images/index/intro_video.mp4" ref="introVideo" muted autoplay loop playsinline></video>
         <img src="@/assets/images/index/intro_photo.jpg" alt="">
@@ -170,8 +226,10 @@ onMounted(() => {
     </div>
     <!-- intro -->
     <section class="intro">
+      <div class="scroll-detect"></div>
       <div class="bg-wrap">
-        <div class="intro-wrap">
+        <!-- intro-wrap -->
+        <div class="intro-wrap space-lr">
           <div class="title" ref="introTitle">
             <p data-split>Hi</p>
             <p data-split>I'm Wilson.</p>
@@ -180,6 +238,7 @@ onMounted(() => {
             <p data-split>A Frontend Developer.</p>
           </div>
         </div>
+        <!-- profile-wrap -->
         <div class="profile-wrap space-lr">
           <div class="container">
             <div class="block-terms">
@@ -193,13 +252,14 @@ onMounted(() => {
                   </div>
                 </div>
                 <div class="text-box">
-                  <div class="note">Frontend Developer</div>
+                  <div class="note">{{ about.note }}</div>
                   <div class="name">
-                    <span class="tw">吳佾闈</span>
-                    <span class="en">Wilson Wu</span>
+                    <span class="tw">{{ about.nameTw }}</span>
+                    <span class="en">{{ about.nameEn }}</span>
                   </div>
-                  <div class="slogan">Keep Learning, Keep Growing.</div>
-                  <p>自 2008 年起，陳嵐舒投入了這段食與飲的旅程。一路至今，從樂沐 Le Moût 到 Gubami ，到小樂沐 Le Côté LM ，以至每段品牌概念的萌芽發起，都是她不斷探索與追尋所結成的果實。</p>
+                  <div class="slash">/</div>
+                  <div class="slogan">{{ about.slogan }}</div>
+                  <p>{{ about.brief }}</p>
                 </div>
               </div>
             </div>
@@ -207,18 +267,46 @@ onMounted(() => {
         </div>
       </div>
     </section>
-    <section class="works space-lr">
+    <!-- works -->
+    <section class="works">
+      <div class="scroll-detect"></div>
+      <div class="works-wrap space-lr">
+        <div class="container">
+          <div class="block-terms">
+            <div class="note">works</div>
+          </div>
+          <div class="block-content" ref="worksContent">
+            <ul ref="worksUl">
+              <EachWork
+                v-for="work in works"
+                :key="work._id"
+                :work="work"
+              />
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- projects -->
+    <section class="projects space-lr">
       <div class="container">
         <div class="block-terms">
-          <div class="note">works</div>
+          <div class="note">side projects</div>
         </div>
         <div class="block-content">
           <ul>
-            <EachWork
-              v-for="work in works"
-              :key="work.id"
-              :work="work"
-            />
+            <li
+              class="each-project"
+              v-for="project in projects" :key="project._id"
+            >
+              <a :href="project.href" data-cotton="explore">
+                <div class="info">
+                  <div class="title">{{ project.title }}</div>
+                  <div class="brief" v-html="project.brief"></div>
+                </div>
+                <div class="tech" v-html="project.tech"></div>
+              </a>
+            </li>
           </ul>
         </div>
       </div>

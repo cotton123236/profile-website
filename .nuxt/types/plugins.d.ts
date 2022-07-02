@@ -12,7 +12,11 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/router").default> &
   InjectionType<typeof import("../dist.plugin.e101faba").default> &
   InjectionType<typeof import("@/plugins/aos").default> &
-  InjectionType<typeof import("../../plugins/aos").default>
+  InjectionType<typeof import("@/plugins/anchor").default> &
+  InjectionType<typeof import("@/plugins/cotton").default> &
+  InjectionType<typeof import("../../plugins/anchor").default> &
+  InjectionType<typeof import("../../plugins/aos").default> &
+  InjectionType<typeof import("../../plugins/cotton").default>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }
