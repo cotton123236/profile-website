@@ -21,6 +21,11 @@ const introTitle = ref(null)
 const introBrief = ref(null)
 const worksContent = ref(null)
 const worksUl = ref(null)
+const worksBg = ref(null)
+const projectUl = ref(null)
+const figureContainer = ref(null)
+const figureImage = ref(null)
+const figureTranslate = ref(0)
 const { about, works, projects } = storeToRefs(indexStore)
 const { updateIndexData } = indexStore
 
@@ -62,13 +67,28 @@ const useIntroAnimate = () => {
         setTimeout(() => {
           introBrief.value.children[0].classList.add('active')
         }, 500)
-      }
+      } 
       now += 1
     }
     else {
       setTimeout(() => {
-        gsap.to('.intro .intro-wrap', { opacity: 0, scale: 0.3, rotate: '-8deg' })
-        gsap.to('.bg-cover video', { scale: 1, rotate: '0deg' })
+        ScrollTrigger.matchMedia({
+          // desktop animation
+          "(min-width: 1025px)": function() {
+            gsap.to('.bg-cover .desktop', { scale: 1, rotate: '0deg' })
+            gsap.to('.intro .intro-wrap', { opacity: 0, scale: 0.3, rotate: '-8deg' })
+          },
+          // tablet animation
+          "(max-width: 1024px)": function() {
+            gsap.to('.bg-cover .tablet', { scale: 1, rotate: '0deg' })
+            gsap.to('.intro .intro-wrap', { opacity: 0, scale: 0.3, rotate: '-8deg' })
+          },
+          // mobile animation
+          "(max-width: 767px)": function() {
+            gsap.to('.bg-cover .mobile', { scale: 1, rotate: '0deg' })
+            gsap.to('.intro .intro-wrap', { opacity: 0, scale: 0.3, rotateY: '78deg', rotateZ: '12deg' })
+          }
+        })
         gsap.to('.bg-cover .color-wrap.intro-bg', { opacity: 0 })
         document.body.classList.add('dark-mode')
       }, 1000)
@@ -78,10 +98,48 @@ const useIntroAnimate = () => {
   const textAnimation = setInterval(useTextAnimation, duration)
 }
 
+// projects mouseenter focus
+const useProjectFocus = () => {
+  const children = projectUl.value.children
+  const mouseenterHandler = function() {
+    [...children].forEach(child => {
+      if (child !== this) child.classList.add('is-disable')
+    })
+  };
+  const mouseleaveHandler = function() {
+    [...children].forEach(child => {
+      child.classList.remove('is-disable')
+    })
+  };
+  [...children].forEach(child => {
+    child.addEventListener('mouseenter', mouseenterHandler)
+    child.addEventListener('mouseleave', mouseleaveHandler)
+  })
+}
+
+// section figure parallax effect
+const useFigureParallax = () => {
+  gsap.to(figureImage.value, {
+    scrollTrigger: {
+      trigger: figureContainer.value,
+      start: 'top bottom',
+      end: 'bottom top',
+      onUpdate: self => {
+        const imageHeight = figureImage.value.offsetHeight
+        const containerHeight = figureContainer.value.offsetHeight
+        const diff = imageHeight - containerHeight
+        figureTranslate.value = diff * self.progress
+      }
+    }
+  })
+}
+
 onMounted(() => {
   useVideoSpeed()
   useSplitText()
   useIntroAnimate()
+  useProjectFocus()
+  useFigureParallax()
 })
 
 
@@ -108,8 +166,27 @@ const useGsap = () => {
   }
   ScrollTrigger.matchMedia({
     // desktop animation
-    "(min-width: 768px)": function() {
-      gsap.to('.bg-cover video', {
+    "(min-width: 1025px)": function() {
+      gsap.to('.bg-cover .image-wrap', {
+        scale: 3.7,
+        opacity: .4,
+        rotate: '-5deg',
+        scrollTrigger: { ...introBotTrigger }
+      })
+    },
+    // tablet animation
+    "(max-width: 1024px)": function() {
+      gsap.to('.bg-cover .image-wrap', {
+        scale: 2.5,
+        opacity: .4,
+        rotate: '-8deg',
+        scrollTrigger: { ...introBotTrigger }
+      })
+    },
+    // mobile animation
+    "(max-width: 767px)": function() {},
+    "all": function() {
+      gsap.to('.bg-cover .image', {
         filter: 'grayscale(.2)',
         '-webkit-filter': 'grayscale(.2)',
         scrollTrigger: { ...introBotTrigger, start: '0 top', end: '5% top' }
@@ -117,12 +194,6 @@ const useGsap = () => {
       gsap.to('.bg-cover .color-wrap.profile-bg', {
         opacity: 0,
         scrollTrigger: { ...introBotTrigger },
-      })
-      gsap.to('.bg-cover .image-wrap', {
-        scale: 3.7,
-        opacity: .4,
-        rotate: '-5deg',
-        scrollTrigger: { ...introBotTrigger }
       })
       gsap.to('.intro .scroll-detect', {
         scrollTrigger: {
@@ -145,27 +216,24 @@ const useGsap = () => {
         '-webkit-filter': 'grayscale(.2)',
         scrollTrigger: { ...introBotTrigger, start: '13% top' }
       })
-      gsap.timeline()
-      .to('.bg-cover .color-wrap.works-bg', {
-        opacity: .9,
+      gsap.to(worksBg.value, {
         scrollTrigger: {
           trigger: '.works',
-          start: '-5% top',
-          end: 'top top',
+          endTrigger: '.projects',
+          start: 'top top',
+          end: '50% top',
           scrub: true,
-          onEnter: () => document.body.classList.add('dark-mode'),
-          onLeaveBack: () => document.body.classList.remove('dark-mode')
-        }
-      })
-      .to('.bg-cover .color-wrap.works-bg', {
-        opacity: 0,
-        scrollTrigger: {
-          trigger: '.works',
-          start: 'bottom top',
-          end: '105% top',
-          scrub: true,
-          onEnterBack: () => document.body.classList.add('dark-mode'),
-          onLeave: () => document.body.classList.remove('dark-mode')
+          onUpdate: self => {
+            if (!worksBg.value) return;
+            if (self.progress !== 0 && self.progress !== 1) {
+              worksBg.value.classList.add('show')
+              document.body.classList.add('dark-mode')
+            }
+            else {
+              worksBg.value.classList.remove('show')
+              document.body.classList.remove('dark-mode')
+            }
+          }
         }
       })
       gsap.to(worksUl.value, {
@@ -179,31 +247,9 @@ const useGsap = () => {
           }
         }
       })
-    },
-    // mobile animation
-    "(max-width: 767px)": function() {
-      gsap.to('.intro .image-wrap img', {
-        scale: 1,
-        opacity: .6,
-        rotate: '0deg',
-        filter: 'grayscale(.2)',
-        '-webkit-filter': 'grayscale(.2)',
-        scrollTrigger: { ...introTrigger }
-      })
-      gsap.to('.intro .intro-wrap', {
-        opacity: 0,
-        scale: 0.1,
-        rotateY: '78deg',
-        rotateZ: '12deg',
-        scrollTrigger: { ...introTrigger }
-      })
-    },
-    "all": function() {
-      
     }
   })
 }
-
 
 onMounted(() => {
   useGsap()
@@ -218,15 +264,22 @@ onMounted(() => {
     <div class="bg-cover">
       <div class="color-wrap intro-bg"></div>
       <div class="color-wrap profile-bg"></div>
-      <div class="color-wrap works-bg"></div>
+      <div class="color-wrap works-bg" ref="worksBg"></div>
       <div class="image-wrap">
-        <video src="@/assets/images/index/intro_video.mp4" ref="introVideo" muted autoplay loop playsinline></video>
-        <img src="@/assets/images/index/intro_photo.jpg" alt="">
+        <video class="image desktop" src="@/assets/images/index/intro_video.mp4" ref="introVideo" muted autoplay loop playsinline></video>
+        <img class="image tablet" src="@/assets/images/index/intro_pad.jpg" alt="">
+        <img class="image mobile" src="@/assets/images/index/intro_phone.jpg" alt="">
       </div>
+      <!-- <div class="btn-cover">
+        <div class="scroll-btn" data-cotton="explore">
+          <span>SCROLL</span>
+        </div>
+      </div> -->
     </div>
     <!-- intro -->
     <section class="intro">
       <div class="scroll-detect"></div>
+      <div class="about-anchor"></div>
       <div class="bg-wrap">
         <!-- intro-wrap -->
         <div class="intro-wrap space-lr">
@@ -294,20 +347,56 @@ onMounted(() => {
           <div class="note">side projects</div>
         </div>
         <div class="block-content">
-          <ul>
-            <li
-              class="each-project"
-              v-for="project in projects" :key="project._id"
-            >
-              <a :href="project.href" data-cotton="explore">
-                <div class="info">
-                  <div class="title">{{ project.title }}</div>
-                  <div class="brief" v-html="project.brief"></div>
-                </div>
-                <div class="tech" v-html="project.tech"></div>
-              </a>
-            </li>
+          <ul ref="projectUl">
+            <EachProject
+              v-for="project in projects"
+              :key="project._id"
+              :project="project"
+            />
           </ul>
+        </div>
+      </div>
+    </section>
+    <!-- figure -->
+    <section class="figure">
+      <div class="photo-box" ref="figureContainer">
+        <div
+          class="photo"
+          ref="figureImage"
+          :style="{ transform: `translate3d(0, ${figureTranslate}px, 0)` }"
+        >
+          <img src="@/assets/images/index/figure.jpg" alt="">
+        </div>
+      </div>
+    </section>
+    <!-- skills -->
+    <!-- <section class="skills space-lr">
+      <div class="container">
+        <div class="block-terms">
+          <div class="note">SKILLS</div>
+        </div>
+      </div>
+    </section> -->
+    <!-- contact -->
+    <section class="contact space-lr">
+      <div class="container">
+        <div class="block-terms">
+          <div class="note">CONTACT</div>
+        </div>
+        <div class="block-content">
+          <div class="name brief-text">
+            <span class="tw">吳佾闈</span>
+            <span class="en">Wilson Wu</span>
+          </div>
+          <div class="mail">
+            <a href="mailto:cotton123236@gmail.com" data-cotton="explore">
+              <span>cotton123236@gmail.com</span>
+            </a>
+          </div>
+          <div class="links">
+            <a href="https://github.com/cotton123236" target="_blank" data-cotton="explore">GITHUB</a>
+            <a href="https://www.linkedin.com/in/cotton123236" target="_blank" data-cotton="explore">LINKEDIN</a>
+          </div>
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 <script setup>
 const { Cotton } = useNuxtApp()
 
-onMounted(() => {
+const useCursor = () => {
   new Cotton('.cursor', {
     models: '[data-cotton]',
     on: {
@@ -17,6 +17,10 @@ onMounted(() => {
       }
     }
   })
+}
+
+onMounted(() => {
+  useCursor()
 })
 </script>
 

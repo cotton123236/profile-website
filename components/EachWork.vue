@@ -21,6 +21,7 @@ const useParallax = () => {
       end: 'bottom top',
       scrub: true,
       onUpdate: self => {
+        if (!parallaxWrap.value || !parallaxImage.value) return;
         const wrapRect = parallaxWrap.value.getBoundingClientRect()
         const imageRect = parallaxImage.value.getBoundingClientRect()
         const diff = imageRect.width - wrapRect.width

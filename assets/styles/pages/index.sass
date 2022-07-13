@@ -4,7 +4,7 @@
 
 .bg-cover
   position: fixed
-  z-index: -1
+  z-index: 0
   top: 0
   left: 0
   width: 100%
@@ -17,31 +17,58 @@
       opacity: .6
     &.works-bg
       opacity: 0
+      transition: opacity var(--trans-l)
+      &.show
+        opacity: .9
   .image-wrap
     position: relative
     z-index: -2
     width: 100%
     height: 100%
     transform-origin: 37% 25%
-    video, img
+    +rwdmax(1024)
+      transform-origin: 50% 49%
+    .image
       position: absolute
       z-index: -1
       top: 0
       left: 0
       // opacity: 0
       filter: grayscale(1)
-      +fit($pos: center bottom)
-    video
+    .desktop
       transform: scale(4.5) rotate(10deg)
       transform-origin: 51.9% 70%
+      +fit($pos: center bottom)
+      +rwdmax(1024)
+        display: none
+    .tablet
+      display: none
+      transform: scale(2.5) rotate(10deg)
+      // transform-origin: 65.5% 83%
+      +fit
+      +rwdmax(1024)
+        display: block
       +rwdmax(767)
         display: none
-    img
+    .mobile
       display: none
       transform: scale(4.8) rotate(-12deg)
       transform-origin: 65.5% 83%
+      +fit
       +rwdmax(767)
         display: block
+  .btn-cover
+    z-index: 0
+    transform-origin: 37% 25%
+    +posFill
+    +rwdmax(1024)
+      transform-origin: 50% 49%
+    .scroll-btn
+      position: absolute
+      z-index: 1
+      bottom: 45px
+      left: 50%
+      transform: translateX(-50%)
 
 
 // intro
@@ -51,6 +78,10 @@ section.intro
   .scroll-detect
     position: absolute
     top: 8%
+    left: 0
+  .about-anchor
+    position: absolute
+    top: 40vh
     left: 0
   .bg-wrap
     position: sticky
@@ -69,6 +100,8 @@ section.intro
     align-items: center
     transform-origin: 51.9% 70%
     +posFill
+    +rwdmax(1024)
+      transform-origin: 50% 50%
     +rwdmax(767)
       transform-origin: 65.5% 83%
     .title
@@ -119,6 +152,10 @@ section.intro
     padding-top: 10vh
     padding-bottom: 10vh
     +posFill
+    +rwdmax(1024)
+      transform: scale(.65) rotate(8deg)
+      transform-origin: 50% 49%
+      opacity: 0
     .container
       height: 100%
     .profile-content
@@ -128,18 +165,24 @@ section.intro
       padding-top: 8vh
       padding-bottom: 10vh
       margin-top: -22px
+      +rwdmax(1024)
+        padding-top: 15vh
     .content-wrap
       display: flex
       align-items: flex-start
       width: 90%
       max-width: 840px
       margin-left: auto
+      +rwdmax(1024)
+        display: block
     .photo-box
       position: relative
       z-index: -1
       width: 200px
       +rwdmax(1440)
         width: 180px
+      +rwdmax(1024)
+        margin-left: auto
       &::before
         padding-bottom: 100%
         +pseudo($pos: static)
@@ -161,6 +204,8 @@ section.intro
       color: var(--black)
       text-align: right
       padding-top: 60px
+      +rwdmax(1024)
+        padding-top: 8vh
       .note
         font-size: px(15)
         line-height: 1.5
@@ -217,12 +262,14 @@ section.works
     width: 100%
     height: 100%
     margin-top: -23px
+    +rwdmax(1024)
+      margin-top: max(4vh, 40px)
   ul
     counter-reset: num
     display: flex
   .each-work
     width: 36vw
-    min-width: 450px
+    min-width: 500px
     & + .each-work
       margin-left: 60px
     a
@@ -291,12 +338,22 @@ section.projects
     counter-reset: num
     margin-top: 60px
   .each-project
-    border-top: 1px solid rgba(255, 255, 255, .3)
-    border-bottom: 1px solid rgba(255, 255, 255, .3)
+    transition: opacity var(--trans-m)
+    border-bottom: 1px solid #999
+    border-top: 1px solid #999
+    opacity: .9
+    &:first-child
+      margin-top: -1px
+    &.is-disable
+      opacity: .3
     a
       display: flex
       align-items: flex-end
       padding: 40px 60px
+      transition: opacity var(--trans)
+      &:hover
+        .brief, .tech
+          opacity: 1
     .info
       flex: 1
       margin-right: 80px
@@ -320,6 +377,8 @@ section.projects
     .brief
       margin-top: 10px
       max-width: 450px
+      transition: opacity var(--trans-m)
+      opacity: .6
       +brief
     .tech
       width: 25%
@@ -328,4 +387,78 @@ section.projects
       font-weight: 300
       letter-spacing: .1em
       line-height: 1.8
-      color: var(--brief-white)
+      transition: opacity var(--trans-m)
+      opacity: .6
+    .photo-box
+      position: fixed
+      z-index: -1
+      top: 0
+      left: 0
+      width: 60%
+      max-width: 450px
+      filter: grayscale(.5)
+      overflow: hidden
+      &::before
+        padding-bottom: 54.5%
+        +pseudo($pos: static)
+    .photo
+      z-index: -1
+      opacity: 0
+      filter: blur(10px)
+      transition: opacity var(--trans-s), filter var(--trans-l)
+      +posFill
+      img
+        +fit
+
+// figure
+section.figure
+  padding-top: 20vh
+  padding-bottom: 20vh
+  .photo-box
+    position: relative
+    width: 80%
+    // margin: auto
+    overflow: hidden
+    background-color: #eee
+    &::before
+      padding-bottom: 56.25%
+      +pseudo($pos: static)
+  .photo
+    filter: grayscale(.4)
+    +posFill($h: 160%, $top: -60%)
+    img
+      +fit
+
+// contact
+section.contact
+  margin-top: 10vh
+  margin-bottom: max(80px, 20vh)
+  .name
+    margin-top: max(80px, 20vh)
+    span
+      font-weight: 300
+      font-family: $Brief
+      letter-spacing: .05em
+      &.tw
+        font-size: px(14)
+      &.en
+        font-size: px(12)
+        margin-left: 10px
+  .mail
+    // font-family: $Brief
+    font-weight: 300
+    font-size: clamp(32px, 5.5vw, 80px)
+    line-height: 1.2
+    margin-top: 40px
+  .links
+    margin-top: max(80px, 20vh)
+    display: flex
+    justify-content: flex-end
+    a
+      font-family: $Brief
+      font-size: px(12)
+      letter-spacing: .1em
+      padding: 5px
+      margin: -5px
+      & + a
+        margin-left: 30px

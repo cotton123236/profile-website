@@ -18,7 +18,7 @@ onMounted(() => {
         <img src="@/assets/images/logo.svg" alt="">
       </nuxt-link>
       <nav>
-        <div class="link" data-anchor-target=".profile-wrap" data-anchor-spacer=".profile-wrap">
+        <div class="link" data-anchor-target=".about-anchor">
           <span>ABOUT</span>
         </div>
         <div class="link" data-anchor-target="section.works">
@@ -26,6 +26,9 @@ onMounted(() => {
         </div>
         <div class="link" data-anchor-target="section.projects">
           <span>SIDE PROJECTS</span>
+        </div>
+        <div class="link" data-anchor-target="section.contact">
+          <span>CONTACT</span>
         </div>
       </nav>
     </div>
