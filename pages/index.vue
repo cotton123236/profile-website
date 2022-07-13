@@ -326,7 +326,7 @@ onMounted(() => {
                   </div>
                   <div class="slash">/</div>
                   <div class="slogan">{{ about.slogan }}</div>
-                  <p>{{ about.brief }}</p>
+                  <p v-html="about.brief"></p>
                 </div>
               </div>
             </div>
