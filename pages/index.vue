@@ -175,7 +175,7 @@ const useGsap = () => {
       })
     },
     // tablet animation
-    "(max-width: 1024px)": function() {
+    "(min-width: 768px) and (max-width: 1024px)": function() {
       gsap.to('.bg-cover .image-wrap', {
         scale: 2.5,
         opacity: .4,
@@ -184,7 +184,14 @@ const useGsap = () => {
       })
     },
     // mobile animation
-    "(max-width: 767px)": function() {},
+    "(max-width: 767px)": function() {
+      gsap.to('.bg-cover .image-wrap', {
+        scale: 4,
+        opacity: .4,
+        rotate: '8deg',
+        scrollTrigger: { ...introBotTrigger }
+      })
+    },
     "all": function() {
       gsap.to('.bg-cover .image', {
         filter: 'grayscale(.2)',
@@ -240,6 +247,7 @@ const useGsap = () => {
         scrollTrigger: {
           ...worksTrigger,
           onUpdate: self => {
+            if (!worksUl.value) return;
             const ulWidth = worksUl.value.offsetWidth
             const contentWidth = worksContent.value.offsetWidth
             const diff = (contentWidth - ulWidth) * self.progress
@@ -251,8 +259,14 @@ const useGsap = () => {
   })
 }
 
+// always scroll to top
+const scrollToTop = () => {
+  window.scrollTo(0, 0)
+}
+
 onMounted(() => {
   useGsap()
+  scrollToTop()
 })
 
 </script>
@@ -388,6 +402,7 @@ onMounted(() => {
             <span class="tw">吳佾闈</span>
             <span class="en">Wilson Wu</span>
           </div>
+          <div class="slash">/</div>
           <div class="mail">
             <a href="mailto:cotton123236@gmail.com" data-cotton="explore">
               <span>cotton123236@gmail.com</span>

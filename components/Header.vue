@@ -3,7 +3,7 @@ const { Anchor } = useNuxtApp()
 
 // Anchor init
 const useAnchor = () => {
-  new Anchor('[data-anchor-target]')
+  new Anchor('header [data-anchor-target]')
 }
 
 onMounted(() => {
@@ -31,6 +31,10 @@ onMounted(() => {
           <span>CONTACT</span>
         </div>
       </nav>
+      <div class="menu-btn">
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </header>
 </template>

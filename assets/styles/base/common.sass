@@ -26,6 +26,9 @@ body
     header
       .logo
         filter: invert(1)
+      .menu-btn
+        span
+          background-color: var(--white)
 
 .brief-text
   color: var(--brief-gray)
@@ -36,6 +39,8 @@ section
     width: 85%
     max-width: 1200px
     margin: auto
+    +rwdmax(1024)
+      width: 88%
 
 // space-lr
 .space-lr
@@ -61,12 +66,11 @@ section
     line-height: 1.5
     letter-spacing: .05em
     text-transform: uppercase
+    +rwdmax(767)
+      margin-left: 20px
     &::before
       content: '/'
       margin-right: 10px
-  .title
-    font-size: px(52)
-    line-height: 1.2
 
 
 // vue transition

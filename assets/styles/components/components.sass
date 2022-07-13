@@ -1,10 +1,17 @@
 // scroll-btn
 .scroll-btn
-  padding: 5px
+  display: inline-flex
+  flex-direction: column
+  align-items: center
   cursor: pointer
+  &::before
+    content: '/'
+    font-size: px(16)
+    margin-bottom: 5px
   span
-    font-size: px(14)
+    font-size: px(13)
     letter-spacing: .1em
+    padding: 5px
 
 // noise-cover
 .noise-cover

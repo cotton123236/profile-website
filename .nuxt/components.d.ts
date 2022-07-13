@@ -4,6 +4,7 @@ declare module 'vue' {
     'Cursor': typeof import("../components/Cursor.vue")['default'],
     'EachProject': typeof import("../components/EachProject.vue")['default'],
     'EachWork': typeof import("../components/EachWork.vue")['default'],
+    'Footer': typeof import("../components/Footer.vue")['default'],
     'Header': typeof import("../components/Header.vue")['default'],
     'NuxtWelcome': typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default'],
     'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/layout")['default'],
@@ -14,6 +15,7 @@ declare module 'vue' {
     'LazyCursor': typeof import("../components/Cursor.vue")['default'],
     'LazyEachProject': typeof import("../components/EachProject.vue")['default'],
     'LazyEachWork': typeof import("../components/EachWork.vue")['default'],
+    'LazyFooter': typeof import("../components/Footer.vue")['default'],
     'LazyHeader': typeof import("../components/Header.vue")['default'],
     'LazyNuxtWelcome': typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default'],
     'LazyNuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/layout")['default'],
@@ -26,6 +28,7 @@ declare module 'vue' {
 export const Cursor: typeof import("../components/Cursor.vue")['default']
 export const EachProject: typeof import("../components/EachProject.vue")['default']
 export const EachWork: typeof import("../components/EachWork.vue")['default']
+export const Footer: typeof import("../components/Footer.vue")['default']
 export const Header: typeof import("../components/Header.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/layout")['default']
@@ -36,6 +39,7 @@ export const NuxtLink: typeof import("../node_modules/nuxt/dist/app/components/n
 export const LazyCursor: typeof import("../components/Cursor.vue")['default']
 export const LazyEachProject: typeof import("../components/EachProject.vue")['default']
 export const LazyEachWork: typeof import("../components/EachWork.vue")['default']
+export const LazyFooter: typeof import("../components/Footer.vue")['default']
 export const LazyHeader: typeof import("../components/Header.vue")['default']
 export const LazyNuxtWelcome: typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const LazyNuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/layout")['default']

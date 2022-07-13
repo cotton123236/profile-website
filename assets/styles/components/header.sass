@@ -4,8 +4,10 @@ header
   top: 0
   left: 0
   width: 100%
-  padding-top: 8.5vh
+  padding-top: 10vh
+  margin-top: -12px
   .container
+    position: relative
     display: flex
     align-items: flex-end
     width: 100%
@@ -15,10 +17,14 @@ header
     display: block
     width: 32px
     transition: filter var(--trans-m)
+    +rwdmax(767)
+      width: 28px
   nav
     display: flex
     align-items: center
     margin-left: auto
+    +rwdmax(900)
+      display: none
     .link
       font-family: $Brief
       font-size: px(12)
@@ -28,3 +34,30 @@ header
       cursor: pointer
       & + .link
         margin-left: 30px
+  .menu-btn
+    position: absolute
+    top: calc(40vh - 20px)
+    right: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 40px
+    height: 40px
+    margin-right: -10px
+    cursor: pointer
+    +rwdmax(900)
+      position: static
+      flex-direction: column
+      margin-right: 0
+      margin-bottom: -10px
+      margin-left: auto
+    span
+      width: 1px
+      height: 25px
+      background-color: var(--black)
+      margin: 0 4px
+      transition: filter var(--trans-m)
+      +rwdmax(900)
+        width: 25px
+        height: 1px
+        margin: 4px 0
