@@ -31,7 +31,7 @@
     +rwdmax(767)
       transform-origin: 10% 80%
     &::before
-      background: radial-gradient(circle at center, transparent, #333)
+      background: radial-gradient(circle at center, transparent 0%, transparent 20%, #111)
       +posFill
       +pseudo
     .image
@@ -310,8 +310,11 @@ section.works
       &::before
         padding-bottom: 75%
         +pseudo($pos: static)
-        +rwdmax(767)
-          padding-bottom: 150%
+        +rwdmax(1024)
+          +portrait
+            padding-bottom: 125%
+          +landscape          
+            padding-bottom: 56.25%
       .photo
         z-index: -1
         overflow: hidden
@@ -371,7 +374,7 @@ section.projects
     &:first-child
       margin-top: -1px
     &.is-disable
-      opacity: .3
+      opacity: .2
     a
       display: flex
       align-items: flex-end

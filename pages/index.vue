@@ -198,6 +198,10 @@ const useGsap = () => {
         '-webkit-filter': 'grayscale(.2)',
         scrollTrigger: { ...introBotTrigger, start: '0 top', end: '5% top' }
       })
+      gsap.to('.noise-cover', {
+        opacity: .8,
+        scrollTrigger: { ...introBotTrigger, start: '0 top', end: '5% top' }
+      })
       gsap.to('.bg-cover .color-wrap.profile-bg', {
         opacity: 0,
         scrollTrigger: { ...introBotTrigger },
@@ -273,8 +277,11 @@ onMounted(() => {
 
 <template>
   <main>
+    <!-- cursor -->
     <Cursor />
+    <!-- noise -->
     <div class="noise-cover"></div>
+    <!-- background -->
     <div class="bg-cover">
       <div class="color-wrap intro-bg"></div>
       <div class="color-wrap profile-bg"></div>
@@ -284,11 +291,6 @@ onMounted(() => {
         <img class="image tablet" src="@/assets/images/index/intro_pad.jpg" alt="">
         <img class="image mobile" src="@/assets/images/index/intro_phone.jpg" alt="">
       </div>
-      <!-- <div class="btn-cover">
-        <div class="scroll-btn" data-cotton="explore">
-          <span>SCROLL</span>
-        </div>
-      </div> -->
     </div>
     <!-- intro -->
     <section class="intro">

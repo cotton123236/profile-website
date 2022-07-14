@@ -22,9 +22,9 @@ const useParallax = () => {
       scrub: true,
       onUpdate: self => {
         if (!parallaxWrap.value || !parallaxImage.value) return;
-        const wrapRect = parallaxWrap.value.getBoundingClientRect()
-        const imageRect = parallaxImage.value.getBoundingClientRect()
-        const diff = imageRect.width - wrapRect.width
+        const wrapWidth = parallaxWrap.value.offsetWidth
+        const imageWidth = parallaxImage.value.offsetWidth
+        const diff = imageWidth - wrapWidth
         translateX.value = diff * self.progress
       }
     }

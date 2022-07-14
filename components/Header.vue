@@ -31,10 +31,6 @@ onMounted(() => {
           <span>CONTACT</span>
         </div>
       </nav>
-      <div class="menu-btn">
-        <span></span>
-        <span></span>
-      </div>
     </div>
   </header>
 </template>
