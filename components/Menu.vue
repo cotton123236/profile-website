@@ -16,7 +16,7 @@ const useMenuControl = () => {
   <div class="menu space-lr" :class="{ show: menuActive }">
     <div class="menu-bg">
       <div class="bg-wrap">
-        <video src="@/assets/images/index/menu_bg.mp4" ref="menuVideo"></video>
+        <video src="@/assets/images/index/menu_bg.mp4" ref="menuVideo" muted playsinline></video>
       </div>
     </div>
     <div class="container">
