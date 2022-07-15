@@ -63,6 +63,20 @@
       +fit
       +rwdmax(767)
         display: block
+  .intro-cover
+    z-index: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    +posFill
+    .text-box
+      text-transform: uppercase
+      width: 80%
+      max-width: 1000px
+      font-size: px(50)
+      letter-spacing: .05em
+      line-height: 1.5
+      margin-top: 30vh
 
 
 // intro
@@ -79,6 +93,7 @@ section.intro
     left: 0
   .bg-wrap
     position: sticky
+    z-index: 1
     top: 0
     left: 0
     z-index: 1
@@ -128,6 +143,8 @@ section.intro
         font-size: px(24)
         letter-spacing: .1em
         text-align: center
+        +rwdmax(767)
+          font-size: px(20)
         &.active
           .letter
             opacity: 1
@@ -324,7 +341,7 @@ section.works
     .text-box
       margin-top: 25px
       padding-left: 50px
-      padding-right: 50px
+      // padding-right: 50px
       .title
         position: relative
         font-size: px(22)
@@ -332,7 +349,7 @@ section.works
         letter-spacing: .05em
         line-height: 1.5
         +rwdmax(767)
-          font-size: px(18)
+          font-size: px(20)
         &::before
           position: absolute
           left: -50px
@@ -344,10 +361,13 @@ section.works
           font-weight: 300
           letter-spacing: .2em
       .sub-title
+        font-family: $Brief
         font-size: px(15)
+        font-weight: 300
         letter-spacing: .05em
         line-height: 1.5
         margin-top: 5px
+        transition: color var(--trans-m)
         +rwdmax(767)
           font-size: px(14)
 
@@ -395,6 +415,8 @@ section.projects
       text-transform: uppercase
       letter-spacing: .05em
       line-height: 1.5
+      +rwdmax(767)
+        font-size: px(20)
       &::before
         position: absolute
         left: -50px

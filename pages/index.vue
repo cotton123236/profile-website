@@ -301,6 +301,11 @@ onMounted(() => {
         <img class="image tablet" src="@/assets/images/index/intro_pad.jpg" alt="">
         <img class="image mobile" src="@/assets/images/index/intro_phone.jpg" alt="">
       </div>
+      <!-- <div class="intro-cover">
+        <div class="text-box">
+          Wilson Design
+        </div>
+      </div> -->
     </div>
     <!-- intro -->
     <section class="intro">

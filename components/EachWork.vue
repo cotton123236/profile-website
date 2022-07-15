@@ -46,7 +46,7 @@ onMounted(() => {
       </div>
       <div class="text-box">
         <div class="title">{{ work.title }}</div>
-        <div class="sub-title">{{ work.subTitle }}</div>
+        <div class="sub-title brief-text">{{ work.subTitle }}</div>
       </div>
     </a>
   </li>
