@@ -79,7 +79,7 @@ const useIntroAnimate = () => {
             gsap.to('.intro .intro-wrap', { opacity: 0, scale: 0.3, rotate: '-8deg' })
           },
           // tablet animation
-          "(max-width: 1024px)": function() {
+          "(min-width: 768px) and (max-width: 1024px)": function() {
             gsap.to('.bg-cover .tablet', { scale: 1, rotate: '0deg' })
             gsap.to('.intro .intro-wrap', { opacity: 0, scale: 0.3, rotate: '-8deg' })
           },
@@ -125,6 +125,7 @@ const useFigureParallax = () => {
       start: 'top bottom',
       end: 'bottom top',
       onUpdate: self => {
+        if (!figureImage.value) return;
         const imageHeight = figureImage.value.offsetHeight
         const containerHeight = figureContainer.value.offsetHeight
         const diff = imageHeight - containerHeight
@@ -199,7 +200,7 @@ const useGsap = () => {
         scrollTrigger: { ...introBotTrigger, start: '0 top', end: '5% top' }
       })
       gsap.to('.noise-cover', {
-        opacity: .8,
+        opacity: .7,
         scrollTrigger: { ...introBotTrigger, start: '0 top', end: '5% top' }
       })
       gsap.to('.bg-cover .color-wrap.profile-bg', {
@@ -257,6 +258,15 @@ const useGsap = () => {
             const diff = (contentWidth - ulWidth) * self.progress
             worksContent.value.style.transform = `translate3d(${diff}px, 0, 0)`
           }
+        }
+      })
+      gsap.to('.contact .leaf', {
+        y: 100,
+        scrollTrigger: {
+          trigger: '.contact .leaf',
+          scrub: true,
+          start: 'top bottom',
+          end: 'bottom top'
         }
       })
     }
@@ -408,6 +418,9 @@ onMounted(() => {
           <div class="mail">
             <a href="mailto:cotton123236@gmail.com" data-cotton="explore">
               <span>cotton123236@gmail.com</span>
+              <div class="leaf">
+                <img src="@/assets/images/index/leaf_01.png" alt="">
+              </div>
             </a>
           </div>
           <div class="links">

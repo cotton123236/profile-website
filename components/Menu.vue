@@ -1,7 +1,16 @@
 <script setup>
 const menuActive = ref(false)
 const menuVideo = ref(null)
+const { Anchor } = useNuxtApp()
 
+// Anchor init
+const useAnchor = () => {
+  new Anchor('.menu [data-anchor-target]', {
+    delay: 800
+  })
+}
+
+// control menu open or close
 const useMenuControl = () => {
   menuActive.value = !menuActive.value
   if (!menuVideo.value) return;
@@ -10,6 +19,15 @@ const useMenuControl = () => {
     menuVideo.value.play()
   }
 }
+
+// close menu
+const closeMenu = () => {
+  menuActive.value = false
+}
+
+onMounted(() => {
+  useAnchor()
+})
 </script>
 
 <template>
@@ -27,10 +45,10 @@ const useMenuControl = () => {
       <div class="menu-content">
         <div class="menu-main">
           <div class="pages" ref="pages">
-            <div class="anchor" data-cotton="explore">ABOUT</div>
-            <div class="anchor" data-cotton="explore">WORKS</div>
-            <div class="anchor" data-cotton="explore">SIDE PROJECTS</div>
-            <div class="anchor" data-cotton="explore">CONTACT</div>
+            <div class="anchor" data-cotton="explore" data-anchor-target=".about-anchor" @click="closeMenu">ABOUT</div>
+            <div class="anchor" data-cotton="explore" data-anchor-target="section.works" @click="closeMenu">WORKS</div>
+            <div class="anchor" data-cotton="explore" data-anchor-target="section.projects" @click="closeMenu">SIDE PROJECTS</div>
+            <div class="anchor" data-cotton="explore" data-anchor-target="section.contact" @click="closeMenu">CONTACT</div>
           </div>
         </div>
         <div class="menu-sub">

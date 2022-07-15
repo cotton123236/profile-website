@@ -63,18 +63,6 @@
       +fit
       +rwdmax(767)
         display: block
-  // .btn-cover
-  //   z-index: 0
-  //   transform-origin: 37% 25%
-  //   +posFill
-  //   +rwdmax(1024)
-  //     transform-origin: 50% 49%
-  //   .scroll-btn
-  //     position: absolute
-  //     z-index: 1
-  //     bottom: 45px
-  //     left: 50%
-  //     transform: translateX(-50%)
 
 
 // intro
@@ -162,7 +150,7 @@ section.intro
       transform: scale(.65) rotate(8deg)
       transform-origin: 50% 49%
     +rwdmax(767)
-      transform: scale(.45) rotate(-8deg)
+      transform: scale(.3) rotate(-8deg)
       transform-origin: 10% 80%
     .container
       height: 100%
@@ -190,9 +178,10 @@ section.intro
       +rwdmax(1440)
         width: 180px
       +rwdmax(1024)
+        width: 150px
         margin-left: auto
       +rwdmax(767)
-        width: 150px
+        width: 130px
       &::before
         padding-bottom: 100%
         +pseudo($pos: static)
@@ -216,6 +205,8 @@ section.intro
       padding-top: 60px
       +rwdmax(1024)
         padding-top: 8vh
+      +rwdmax(767)
+        padding-top: 6vh
       .note
         font-size: px(15)
         line-height: 1.5
@@ -227,7 +218,7 @@ section.intro
         line-height: 1.5
         margin-top: 10px
         +rwdmax(767)
-          font-size: px(26)
+          font-size: px(24)
         span
           &.en
             margin-left: 10px
@@ -246,6 +237,7 @@ section.intro
         margin-top: 15px
         +brief
         +rwdmax(767)
+          width: 95%
           font-size: px(14)
   .letter
     opacity: 0
@@ -270,7 +262,7 @@ section.works
   .container
     height: 100%
     padding-top: max(10vh, 60px)
-    padding-bottom: max(10vh, 60px)
+    padding-bottom: max(15vh, 100px)
   .block-content
     position: relative
     display: flex
@@ -472,6 +464,8 @@ section.figure
     &::before
       padding-bottom: 56.25%
       +pseudo($pos: static)
+      +rwdmax(1024)
+        padding-bottom: 75%
       +rwdmax(767)
         padding-bottom: 150%
   .photo
@@ -486,6 +480,7 @@ section.figure
 section.contact
   padding-top: 10vh
   padding-bottom: clamp(60px, 20vh, 200px)
+  overflow: hidden
   .name
     margin-top: clamp(60px, 20vh, 200px)
     span
@@ -501,10 +496,27 @@ section.contact
     font-size: px(18)
     margin: 60px 5px 30px
   .mail
-    // font-family: $Brief
+    position: relative
     font-weight: 300
     font-size: clamp(32px, 5.5vw, 80px)
     line-height: 1.2
+    span
+      position: relative
+      z-index: 1
+    .leaf
+      position: absolute
+      z-index: -1
+      right: 10%
+      top: -150%
+      width: 100px
+      transform: rotate(120deg)
+      pointer-events: none
+      filter: grayscale(.4)
+      +rwdmax(767)
+        right: -10%
+        width: 80px
+      img
+        width: 100%
   .links
     margin-top: max(80px, 20vh)
     display: flex
