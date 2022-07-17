@@ -262,6 +262,7 @@ const useGsap = () => {
       })
       gsap.to('.contact .leaf', {
         y: 100,
+        rotate: '60deg',
         scrollTrigger: {
           trigger: '.contact .leaf',
           scrub: true,
@@ -357,9 +358,9 @@ onMounted(() => {
       <div class="works-wrap space-lr">
         <div class="container">
           <div class="block-terms">
-            <div class="note">works</div>
+            <div class="note" data-aos><span>works</span></div>
           </div>
-          <div class="block-content" ref="worksContent">
+          <div class="block-content" ref="worksContent" data-aos="fade" data-aos-duration="800">
             <ul ref="worksUl">
               <EachWork
                 v-for="work in works"
@@ -375,9 +376,9 @@ onMounted(() => {
     <section class="projects space-lr">
       <div class="container">
         <div class="block-terms">
-          <div class="note">side projects</div>
+          <div class="note" data-aos><span>side projects</span></div>
         </div>
-        <div class="block-content">
+        <div class="block-content" data-aos="fade" data-aos-duration="800">
           <ul ref="projectUl">
             <EachProject
               v-for="project in projects"
@@ -412,23 +413,23 @@ onMounted(() => {
     <section class="contact space-lr">
       <div class="container">
         <div class="block-terms">
-          <div class="note">CONTACT</div>
+          <div class="note" data-aos><span>CONTACT</span></div>
         </div>
         <div class="block-content">
-          <div class="name brief-text">
+          <div class="name brief-text" data-aos>
             <span class="tw">吳佾闈</span>
             <span class="en">Wilson Wu</span>
           </div>
-          <div class="slash">/</div>
-          <div class="mail">
+          <div class="slash" data-aos>/</div>
+          <div class="mail" data-aos>
             <a href="mailto:cotton123236@gmail.com" data-cotton="explore">
               <span>cotton123236@gmail.com</span>
-              <div class="leaf">
-                <img src="@/assets/images/index/leaf_01.png" alt="">
-              </div>
             </a>
+            <div class="leaf">
+              <img src="@/assets/images/index/leaf_01.png" alt="">
+            </div>
           </div>
-          <div class="links">
+          <div class="links" data-aos="fade" data-aos-duration="800">
             <a href="https://github.com/cotton123236" target="_blank" data-cotton="explore">GITHUB</a>
             <a href="https://www.linkedin.com/in/cotton123236" target="_blank" data-cotton="explore">LINKEDIN</a>
           </div>

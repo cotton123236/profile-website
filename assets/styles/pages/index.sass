@@ -63,20 +63,20 @@
       +fit
       +rwdmax(767)
         display: block
-  .intro-cover
-    z-index: 0
-    display: flex
-    justify-content: center
-    align-items: center
-    +posFill
-    .text-box
-      text-transform: uppercase
-      width: 80%
-      max-width: 1000px
-      font-size: px(50)
-      letter-spacing: .05em
-      line-height: 1.5
-      margin-top: 30vh
+  // .intro-cover
+  //   z-index: 0
+  //   display: flex
+  //   justify-content: center
+  //   align-items: center
+  //   +posFill
+  //   .text-box
+  //     text-transform: uppercase
+  //     width: 80%
+  //     max-width: 1000px
+  //     font-size: px(50)
+  //     letter-spacing: .05em
+  //     line-height: 1.5
+  //     margin-top: 30vh
 
 
 // intro
@@ -505,10 +505,19 @@ section.contact
   overflow: hidden
   .name
     margin-top: clamp(60px, 20vh, 200px)
+    overflow: hidden
+    &.aos-animate
+      span
+        opacity: 1
+        transform: translate(0, 0)
+        transition: opacity var(--trans-l) var(--trans-timing), transform var(--trans-l) var(--trans-timing)
     span
+      display: inline-block
       font-weight: 300
       font-family: $Brief
       letter-spacing: .05em
+      opacity: 0
+      transform: translate(0, 100%)
       &.tw
         font-size: px(14)
       &.en
@@ -522,9 +531,19 @@ section.contact
     font-weight: 300
     font-size: clamp(32px, 5.5vw, 80px)
     line-height: 1.2
+    &.aos-animate
+      span
+        opacity: 1
+        transform: translate(0, 0)
+        transition: opacity var(--trans-l) var(--trans-timing), transform var(--trans-l) var(--trans-timing)
+    a
+      overflow: hidden
     span
       position: relative
       z-index: 1
+      display: inline-block
+      opacity: 0
+      transform: translate(0, 100%)
     .leaf
       position: absolute
       z-index: -1

@@ -1,12 +1,12 @@
 import OPTIONS from './options'
-import SHARED from './../shared/shared'
+import SHARED from './shared'
 import {
   isString,
   isElementExist,
   isFunction,
   getElement,
   getAllElements
-} from './../shared/utils'
+} from './utils'
 
 
 const ease = {

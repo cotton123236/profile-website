@@ -1,0 +1,17 @@
+.block-terms
+  .note
+    overflow: hidden
+    opacity: 0
+    transform: translate(0, 50px)
+    &.aos-animate
+      opacity: 1
+      transform: translate(0, 0)
+      transition: opacity var(--trans-l) var(--trans-timing), transform var(--trans-l) var(--trans-timing), color var(--trans-m)
+      span
+        opacity: 1
+        transform: translate(0, 0)
+        transition: opacity var(--trans-l) var(--trans-timing) .6s, transform var(--trans-l) var(--trans-timing) .6s
+    span
+      display: inline-block
+      opacity: 0
+      transform: translate(-100%, 0)
