@@ -360,7 +360,7 @@ onMounted(() => {
           <div class="block-terms">
             <div class="note" data-aos><span>works</span></div>
           </div>
-          <div class="block-content" ref="worksContent" data-aos="fade" data-aos-duration="800">
+          <div class="block-content" ref="worksContent">
             <ul ref="worksUl">
               <EachWork
                 v-for="work in works"
@@ -378,7 +378,7 @@ onMounted(() => {
         <div class="block-terms">
           <div class="note" data-aos><span>side projects</span></div>
         </div>
-        <div class="block-content" data-aos="fade" data-aos-duration="800">
+        <div class="block-content">
           <ul ref="projectUl">
             <EachProject
               v-for="project in projects"
