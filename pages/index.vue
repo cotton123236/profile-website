@@ -203,6 +203,10 @@ const useGsap = () => {
         opacity: .7,
         scrollTrigger: { ...introBotTrigger, start: '0 top', end: '5% top' }
       })
+      gsap.to('.image-cover', {
+        scale: 2,
+        scrollTrigger: { ...introBotTrigger, start: '0 top', end: '5% top' }
+      })
       gsap.to('.bg-cover .color-wrap.profile-bg', {
         opacity: 0,
         scrollTrigger: { ...introBotTrigger },
@@ -301,12 +305,8 @@ onMounted(() => {
         <video class="image desktop" src="@/assets/images/index/intro_video.mp4" ref="introVideo" muted autoplay loop playsinline></video>
         <img class="image tablet" src="@/assets/images/index/intro_pad.jpg" alt="">
         <img class="image mobile" src="@/assets/images/index/intro_phone.jpg" alt="">
+        <div class="image-cover"></div>
       </div>
-      <!-- <div class="intro-cover">
-        <div class="text-box">
-          Wilson Design
-        </div>
-      </div> -->
     </div>
     <!-- intro -->
     <section class="intro">
@@ -416,12 +416,12 @@ onMounted(() => {
           <div class="note" data-aos><span>CONTACT</span></div>
         </div>
         <div class="block-content">
-          <div class="name brief-text" data-aos>
+          <div class="name brief-text">
             <span class="tw">吳佾闈</span>
             <span class="en">Wilson Wu</span>
           </div>
-          <div class="slash" data-aos>/</div>
-          <div class="mail" data-aos>
+          <div class="slash">/</div>
+          <div class="mail">
             <a href="mailto:cotton123236@gmail.com" data-cotton="explore">
               <span>cotton123236@gmail.com</span>
             </a>
@@ -429,7 +429,7 @@ onMounted(() => {
               <img src="@/assets/images/index/leaf_01.png" alt="">
             </div>
           </div>
-          <div class="links" data-aos="fade" data-aos-duration="800">
+          <div class="links">
             <a href="https://github.com/cotton123236" target="_blank" data-cotton="explore">GITHUB</a>
             <a href="https://www.linkedin.com/in/cotton123236" target="_blank" data-cotton="explore">LINKEDIN</a>
           </div>

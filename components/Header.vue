@@ -18,16 +18,16 @@ onMounted(() => {
         <img src="@/assets/images/logo.svg" alt="">
       </nuxt-link>
       <nav>
-        <div class="link" data-anchor-target=".about-anchor">
+        <div class="link" data-anchor-target=".about-anchor" data-cotton="explore">
           <span>ABOUT</span>
         </div>
-        <div class="link" data-anchor-target="section.works">
+        <div class="link" data-anchor-target="section.works" data-cotton="explore">
           <span>WORKS</span>
         </div>
-        <div class="link" data-anchor-target="section.projects">
+        <div class="link" data-anchor-target="section.projects" data-cotton="explore">
           <span>SIDE PROJECTS</span>
         </div>
-        <div class="link" data-anchor-target="section.contact">
+        <div class="link" data-anchor-target="section.contact" data-cotton="explore">
           <span>CONTACT</span>
         </div>
       </nav>
