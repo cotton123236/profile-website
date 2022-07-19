@@ -38,7 +38,7 @@ onMounted(() => {
       </div>
     </div>
     <div class="container">
-      <div class="menu-btn" @click="useMenuControl">
+      <div class="menu-btn" data-cotton="explore" @click="useMenuControl">
         <span></span>
         <span></span>
       </div>

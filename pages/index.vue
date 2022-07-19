@@ -19,9 +19,10 @@ useHead({
 const introVideo = ref(null)
 const introTitle = ref(null)
 const introBrief = ref(null)
-const worksContent = ref(null)
-const worksUl = ref(null)
 const worksBg = ref(null)
+const worksUl = ref(null)
+const worksContent = ref(null)
+const worksTranslate = ref(0)
 const projectUl = ref(null)
 const figureContainer = ref(null)
 const figureImage = ref(null)
@@ -259,8 +260,7 @@ const useGsap = () => {
             if (!worksUl.value) return;
             const ulWidth = worksUl.value.offsetWidth
             const contentWidth = worksContent.value.offsetWidth
-            const diff = (contentWidth - ulWidth) * self.progress
-            worksContent.value.style.transform = `translate3d(${diff}px, 0, 0)`
+            worksTranslate.value = (contentWidth - ulWidth) * self.progress
           }
         }
       })
@@ -361,7 +361,7 @@ onMounted(() => {
             <div class="note" data-aos><span>works</span></div>
           </div>
           <div class="block-content" ref="worksContent">
-            <ul ref="worksUl">
+            <ul ref="worksUl" :style="{ transform: `translate3d(${worksTranslate}px, 0, 0)` }">
               <EachWork
                 v-for="work in works"
                 :key="work._id"
