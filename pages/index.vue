@@ -175,6 +175,12 @@ const useGsap = () => {
         rotate: '-5deg',
         scrollTrigger: { ...introBotTrigger }
       })
+      gsap.to('.scroll-cover .container', {
+        scale: 3.7,
+        opacity: .4,
+        rotate: '-5deg',
+        scrollTrigger: { ...introBotTrigger }
+      })
     },
     // tablet animation
     "(min-width: 768px) and (max-width: 1024px)": function() {
@@ -184,10 +190,22 @@ const useGsap = () => {
         rotate: '-8deg',
         scrollTrigger: { ...introBotTrigger }
       })
+      gsap.to('.scroll-cover .container', {
+        scale: 2.5,
+        opacity: .4,
+        rotate: '-8deg',
+        scrollTrigger: { ...introBotTrigger }
+      })
     },
     // mobile animation
     "(max-width: 767px)": function() {
       gsap.to('.bg-cover .image-wrap', {
+        scale: 4,
+        opacity: .4,
+        rotate: '8deg',
+        scrollTrigger: { ...introBotTrigger }
+      })
+      gsap.to('.scroll-cover .container', {
         scale: 4,
         opacity: .4,
         rotate: '8deg',
@@ -294,6 +312,8 @@ onMounted(() => {
   <main>
     <!-- cursor -->
     <Cursor />
+    <!-- scroll-cover -->
+    <ScrollCover />
     <!-- noise -->
     <div class="noise-cover"></div>
     <!-- background -->

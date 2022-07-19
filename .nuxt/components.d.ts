@@ -7,6 +7,7 @@ declare module 'vue' {
     'Footer': typeof import("../components/Footer.vue")['default'],
     'Header': typeof import("../components/Header.vue")['default'],
     'Menu': typeof import("../components/Menu.vue")['default'],
+    'ScrollCover': typeof import("../components/ScrollCover.vue")['default'],
     'NuxtWelcome': typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default'],
     'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/layout")['default'],
     'NuxtErrorBoundary': typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default'],
@@ -19,6 +20,7 @@ declare module 'vue' {
     'LazyFooter': typeof import("../components/Footer.vue")['default'],
     'LazyHeader': typeof import("../components/Header.vue")['default'],
     'LazyMenu': typeof import("../components/Menu.vue")['default'],
+    'LazyScrollCover': typeof import("../components/ScrollCover.vue")['default'],
     'LazyNuxtWelcome': typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default'],
     'LazyNuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/layout")['default'],
     'LazyNuxtErrorBoundary': typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default'],
@@ -33,6 +35,7 @@ export const EachWork: typeof import("../components/EachWork.vue")['default']
 export const Footer: typeof import("../components/Footer.vue")['default']
 export const Header: typeof import("../components/Header.vue")['default']
 export const Menu: typeof import("../components/Menu.vue")['default']
+export const ScrollCover: typeof import("../components/ScrollCover.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/layout")['default']
 export const NuxtErrorBoundary: typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -45,6 +48,7 @@ export const LazyEachWork: typeof import("../components/EachWork.vue")['default'
 export const LazyFooter: typeof import("../components/Footer.vue")['default']
 export const LazyHeader: typeof import("../components/Header.vue")['default']
 export const LazyMenu: typeof import("../components/Menu.vue")['default']
+export const LazyScrollCover: typeof import("../components/ScrollCover.vue")['default']
 export const LazyNuxtWelcome: typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const LazyNuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/layout")['default']
 export const LazyNuxtErrorBoundary: typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']

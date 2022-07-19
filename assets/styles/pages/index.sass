@@ -2,6 +2,7 @@
 @import ./../base/mixin
 
 
+// bg-cover
 .bg-cover
   position: fixed
   z-index: -1
@@ -77,6 +78,30 @@
   //     letter-spacing: .05em
   //     line-height: 1.5
   //     margin-top: 30vh
+
+// scroll-cover
+.scroll-cover
+  position: fixed
+  z-index: 2
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  pointer-events: none
+  overflow: hidden
+  .container
+    position: relative
+    width: 100%
+    max-width: 1600px
+    height: 100%
+    margin: auto
+    // +rwdmax(1024)
+    //   width: 88%
+  .scroll-btn
+    position: absolute
+    right: 0
+    bottom: 5vh
+    pointer-events: auto
 
 
 // intro
