@@ -63,7 +63,7 @@ onMounted(() => {
           </div>
         </div>
         <div class="scroll-btn vertical" data-cotton="explore" data-anchor-target=".about-anchor">
-          <span>SCROLL</span>
+          <span>EXPLORE</span>
         </div>
       </div>
     </div>
