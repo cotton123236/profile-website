@@ -1,6 +1,5 @@
 <script setup>
 import { gsap } from 'gsap'
-import gsapCore from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { storeToRefs } from 'pinia'
 import { useIndexStore } from './../store/index'
@@ -16,12 +15,15 @@ useHead({
 })
 
 // define Refs
+const scrollCoverShow = ref(false)
 const introVideo = ref(null)
 const introTitle = ref(null)
 const introBrief = ref(null)
 const worksBg = ref(null)
 const worksUl = ref(null)
+const worksUlWidth = ref(0)
 const worksContent = ref(null)
+const worksContentWidth = ref(0)
 const worksTranslate = ref(0)
 const projectUl = ref(null)
 const figureContainer = ref(null)
@@ -92,6 +94,7 @@ const useIntroAnimate = () => {
         })
         gsap.to('.bg-cover .color-wrap.intro-bg', { opacity: 0 })
         document.body.classList.add('dark-mode')
+        scrollCoverShow.value = true
       }, 1000)
       return clearInterval(textAnimation)
     }
@@ -145,6 +148,13 @@ onMounted(() => {
 })
 
 
+// get works elements width
+const getWorksWidth = () => {
+  if (!worksUl.value || !worksContent.value) return;
+  worksUlWidth.value = worksUl.value.offsetWidth
+  worksContentWidth.value = worksContent.value.offsetWidth
+}
+
 // gasp animation
 const useGsap = () => {
   const introTopTrigger = {
@@ -175,9 +185,9 @@ const useGsap = () => {
         rotate: '-5deg',
         scrollTrigger: { ...introBotTrigger }
       })
-      gsap.to('.scroll-cover .container', {
+      gsap.to('.scroll-cover .cover-wrap', {
         scale: 3.7,
-        opacity: .4,
+        opacity: 0,
         rotate: '-5deg',
         scrollTrigger: { ...introBotTrigger }
       })
@@ -190,9 +200,9 @@ const useGsap = () => {
         rotate: '-8deg',
         scrollTrigger: { ...introBotTrigger }
       })
-      gsap.to('.scroll-cover .container', {
+      gsap.to('.scroll-cover .cover-wrap', {
         scale: 2.5,
-        opacity: .4,
+        opacity: 0,
         rotate: '-8deg',
         scrollTrigger: { ...introBotTrigger }
       })
@@ -205,9 +215,9 @@ const useGsap = () => {
         rotate: '8deg',
         scrollTrigger: { ...introBotTrigger }
       })
-      gsap.to('.scroll-cover .container', {
+      gsap.to('.scroll-cover .cover-wrap', {
         scale: 4,
-        opacity: .4,
+        opacity: 0,
         rotate: '8deg',
         scrollTrigger: { ...introBotTrigger }
       })
@@ -275,10 +285,8 @@ const useGsap = () => {
         scrollTrigger: {
           ...worksTrigger,
           onUpdate: self => {
-            if (!worksUl.value) return;
-            const ulWidth = worksUl.value.offsetWidth
-            const contentWidth = worksContent.value.offsetWidth
-            worksTranslate.value = (contentWidth - ulWidth) * self.progress
+            if (!worksContentWidth.value || !worksUlWidth.value) return;
+            worksTranslate.value = (worksContentWidth.value - worksUlWidth.value) * self.progress
           }
         }
       })
@@ -302,8 +310,10 @@ const scrollToTop = () => {
 }
 
 onMounted(() => {
+  getWorksWidth()
   useGsap()
   scrollToTop()
+  window.addEventListener('scroll', getWorksWidth)
 })
 
 </script>
@@ -311,9 +321,9 @@ onMounted(() => {
 <template>
   <main>
     <!-- cursor -->
-    <Cursor />
+    <!-- <Cursor /> -->
     <!-- scroll-cover -->
-    <ScrollCover />
+    <ScrollCover :class="{ show: scrollCoverShow }" />
     <!-- noise -->
     <div class="noise-cover"></div>
     <!-- background -->

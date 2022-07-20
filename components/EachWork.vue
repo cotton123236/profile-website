@@ -9,8 +9,17 @@ defineProps({
 })
 
 const parallaxWrap = ref(null)
+const parallaxWrapWidth = ref(0)
 const parallaxImage = ref(null)
+const parallaxImageWidth = ref(0)
 const translateX = ref(0)
+
+// get elements width
+const getEleWidth = () => {
+  if (!parallaxWrap.value || !parallaxImage.value) return;
+  parallaxWrapWidth.value = parallaxWrap.value.offsetWidth
+  parallaxImageWidth.value = parallaxImage.value.offsetWidth
+}
 
 // parallax
 const useParallax = () => {
@@ -21,10 +30,8 @@ const useParallax = () => {
       end: 'bottom top',
       scrub: true,
       onUpdate: self => {
-        if (!parallaxWrap.value || !parallaxImage.value) return;
-        const wrapWidth = parallaxWrap.value.offsetWidth
-        const imageWidth = parallaxImage.value.offsetWidth
-        const diff = imageWidth - wrapWidth
+        if (!parallaxImageWidth.value || !parallaxWrapWidth.value) return;
+        const diff = parallaxImageWidth.value - parallaxWrapWidth.value
         translateX.value = diff * self.progress
       }
     }
@@ -32,7 +39,9 @@ const useParallax = () => {
 }
 
 onMounted(() => {
+  getEleWidth()
   useParallax()
+  window.addEventListener('scroll', getEleWidth)
 })
 </script>
 

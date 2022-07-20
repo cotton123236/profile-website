@@ -17,6 +17,7 @@
     letter-spacing: .1em
     padding: 5px
 
+
 // noise-cover
 .noise-cover
   &::after
@@ -32,3 +33,57 @@
     pointer-events: none
     // opacity: .8
 
+// scroll-cover
+.scroll-cover
+  position: fixed
+  z-index: 2
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  pointer-events: none
+  overflow: hidden
+  opacity: 0
+  &.show
+    opacity: 1
+    transition: opacity var(--trans-l)
+  .cover-wrap
+    +posFill
+  .container
+    position: relative
+    display: flex
+    width: 100%
+    max-width: 1600px
+    height: 100%
+    margin: auto
+  .text-box
+    position: absolute
+    bottom: 8vh
+    left: 5%
+    width: 90%
+    +rwdmax(1024)
+      bottom: 12vh
+    +rwdmax(767)
+      bottom: 45vh
+    .text
+      position: relative
+      display: inline-block
+      font-size: px(24)
+      font-weight: 300
+      line-height: 1.4
+      letter-spacing: .05em
+      +rwdmax(767)
+        font-size: px(22)
+      &::after
+        right: -5px
+        top: 15%
+        width: 1px
+        height: 60%
+        background-color: var(--brief-white)
+        animation: blink .5s step-end infinite alternate
+        +pseudo
+  .scroll-btn
+    position: absolute
+    right: 0
+    bottom: 5vh
+    pointer-events: auto
