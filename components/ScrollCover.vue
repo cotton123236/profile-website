@@ -58,7 +58,8 @@ onMounted(() => {
       <div class="container">
         <div class="text-box brief-text">
           <div class="text">
-            Hi! I am 
+            <span class="static">Hi! I am</span>
+            <!-- <br> -->
             <span class="typing">{{ typingText.join('') }}</span>
           </div>
         </div>

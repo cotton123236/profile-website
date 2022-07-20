@@ -58,24 +58,38 @@
     margin: auto
   .text-box
     position: absolute
-    bottom: 28vh
+    display: flex
+    flex-direction: column
+    bottom: 20vh
     left: 5%
     width: 90%
     +rwdmax(1024)
-      bottom: 12vh
+      bottom: 8vh
     +rwdmax(767)
       bottom: 45vh
     .text
+      letter-spacing: .05em
+      min-height: 100px
+    .static
+      display: block
+      font-weight: 300
+      line-height: 1.5
+      font-size: px(22)
+      // color: #999
+      +rwdmax(1024)
+        font-size: px(20)
+      +rwdmax(767)
+        font-size: px(16)
+    .typing
       position: relative
       display: inline-block
-      font-size: px(28)
-      // font-weight: 300
-      line-height: 1.4
-      letter-spacing: .05em
+      font-size: px(36)
+      line-height: 1.5
+      color: var(--white)
       +rwdmax(1024)
-        font-size: px(24)
+        font-size: px(32)
       +rwdmax(767)
-        font-size: px(22)
+        font-size: px(26)
       &::after
         right: -5px
         top: 15%
