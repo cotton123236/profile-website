@@ -12,9 +12,9 @@ const useAnchor = () => {
 // Typing text animation
 const typingText = reactive([])
 const typingArray = reactive([
-  'am Wilson.',
-  'am a frontend developer.',
-  'love web design.'
+  'Wilson.',
+  'a frontend developer.',
+  'a web designer.'
 ])
 const useTyping = () => {
   if (!scrollCover.value) return;
@@ -58,7 +58,7 @@ onMounted(() => {
       <div class="container">
         <div class="text-box brief-text">
           <div class="text">
-            Hi! I
+            Hi! I am 
             <span class="typing">{{ typingText.join('') }}</span>
           </div>
         </div>

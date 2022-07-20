@@ -185,12 +185,6 @@ const useGsap = () => {
         rotate: '-5deg',
         scrollTrigger: { ...introBotTrigger }
       })
-      gsap.to('.scroll-cover .cover-wrap', {
-        scale: 3.7,
-        opacity: 0,
-        rotate: '-5deg',
-        scrollTrigger: { ...introBotTrigger }
-      })
     },
     // tablet animation
     "(min-width: 768px) and (max-width: 1024px)": function() {
@@ -200,24 +194,12 @@ const useGsap = () => {
         rotate: '-8deg',
         scrollTrigger: { ...introBotTrigger }
       })
-      gsap.to('.scroll-cover .cover-wrap', {
-        scale: 2.5,
-        opacity: 0,
-        rotate: '-8deg',
-        scrollTrigger: { ...introBotTrigger }
-      })
     },
     // mobile animation
     "(max-width: 767px)": function() {
       gsap.to('.bg-cover .image-wrap', {
         scale: 4,
         opacity: .4,
-        rotate: '8deg',
-        scrollTrigger: { ...introBotTrigger }
-      })
-      gsap.to('.scroll-cover .cover-wrap', {
-        scale: 4,
-        opacity: 0,
         rotate: '8deg',
         scrollTrigger: { ...introBotTrigger }
       })
@@ -234,6 +216,10 @@ const useGsap = () => {
       })
       gsap.to('.image-cover', {
         scale: 2,
+        scrollTrigger: { ...introBotTrigger, start: '0 top', end: '5% top' }
+      })
+      gsap.to('.scroll-cover .cover-wrap', {
+        opacity: 0,
         scrollTrigger: { ...introBotTrigger, start: '0 top', end: '5% top' }
       })
       gsap.to('.bg-cover .color-wrap.profile-bg', {

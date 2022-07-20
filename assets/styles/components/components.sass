@@ -13,7 +13,7 @@
     span
       writing-mode: vertical-lr
   span
-    font-size: px(13)
+    font-size: px(12)
     letter-spacing: .1em
     padding: 5px
 
@@ -58,7 +58,7 @@
     margin: auto
   .text-box
     position: absolute
-    bottom: 8vh
+    bottom: 28vh
     left: 5%
     width: 90%
     +rwdmax(1024)
@@ -68,10 +68,12 @@
     .text
       position: relative
       display: inline-block
-      font-size: px(24)
-      font-weight: 300
+      font-size: px(28)
+      // font-weight: 300
       line-height: 1.4
       letter-spacing: .05em
+      +rwdmax(1024)
+        font-size: px(24)
       +rwdmax(767)
         font-size: px(22)
       &::after
