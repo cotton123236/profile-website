@@ -266,7 +266,7 @@ section.intro
 // works
 section.works
   position: relative
-  height: 200vh
+  height: 250vh
   .scroll-detect
     position: absolute
     top: 100vh
@@ -280,7 +280,7 @@ section.works
   .container
     height: 100%
     padding-top: max(10vh, 60px)
-    padding-bottom: max(10vh, 60px)
+    padding-bottom: max(5vh, 40px)
     +rwdmax(1024)
       padding-bottom: max(15vh, 100px)
   .block-content
@@ -344,7 +344,8 @@ section.works
     .text-box
       margin-top: 25px
       padding-left: 50px
-      // padding-right: 50px
+      +rwdmax(767)
+        padding-left: 45px
       .title
         position: relative
         font-size: px(22)
@@ -363,16 +364,27 @@ section.works
           font-size: px(13)
           font-weight: 300
           letter-spacing: .2em
+          +rwdmax(767)
+            left: -45px
       .sub-title
         font-family: $Brief
         font-size: px(15)
         font-weight: 300
         letter-spacing: .05em
         line-height: 1.5
-        margin-top: 5px
+        // margin-top: 5px
         transition: color var(--trans-m)
         +rwdmax(767)
           font-size: px(14)
+      .tech
+        font-family: $Brief
+        font-size: px(13)
+        font-weight: 300
+        letter-spacing: .1em
+        line-height: 1.8
+        transition: opacity var(--trans-m)
+        opacity: .6
+        margin-top: 10px
 
 // projects
 section.projects
