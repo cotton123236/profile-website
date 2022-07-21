@@ -343,7 +343,7 @@ onMounted(() => {
         <div class="profile-wrap space-lr">
           <div class="container">
             <div class="block-terms">
-              <div class="note">Introduction</div>
+              <div class="note aos-animate">ABOUT</div>
             </div>
             <div class="profile-content">
               <div class="content-wrap">

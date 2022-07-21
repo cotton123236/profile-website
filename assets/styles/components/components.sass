@@ -9,6 +9,7 @@
     content: '/'
     font-size: px(16)
     margin-bottom: 5px
+    transition: var(--trans-s)
   &.vertical
     span
       writing-mode: vertical-lr
@@ -16,6 +17,7 @@
     font-size: px(12)
     letter-spacing: .1em
     padding: 5px
+    transition: var(--trans-s)
 
 
 // noise-cover
@@ -103,3 +105,6 @@
     right: 0
     bottom: 5vh
     pointer-events: auto
+    &:hover
+      &::before, span
+        color: var(--white)

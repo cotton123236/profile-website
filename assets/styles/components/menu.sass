@@ -29,8 +29,10 @@
         background-color: var(--white)
         &:nth-child(1)
           transform: translate(-50%, -50%) rotate(45deg)
+          margin: 0 !important
         &:nth-child(2)
           transform: translate(-50%, -50%) rotate(-45deg)
+          margin: 0 !important
     .menu-main
       .anchor
         opacity: 1
@@ -116,6 +118,16 @@
       top: 10vh
       margin-top: -15px
       margin-right: 0
+    &:hover
+      span
+        &:nth-child(1)
+          margin: -3px 0 0 0
+          +rwdmax(900)
+            margin: 0
+        &:nth-child(2)
+          margin: 3px 0 0 0
+          +rwdmax(900)
+            margin: 0
     span
       position: absolute
       top: 50%
@@ -123,7 +135,7 @@
       width: 1px
       height: 25px
       background-color: var(--black)
-      transition: background-color var(--trans-m), transform var(--trans-m) var(--trans-timing)
+      transition: background-color var(--trans-m), transform var(--trans-m) var(--trans-timing), margin var(--trans-s)
       +rwdmax(900)
         width: 25px
         height: 1px
