@@ -11,7 +11,23 @@ const indexStore = useIndexStore()
 
 // setting head
 useHead({
-  title: 'Wilson\'s Profile'
+  title: 'Wilson\'s Profile',
+  viewport: 'width=device-width, initial-scale=1',
+  charset: 'utf-8',
+  meta: [
+    {
+      name: 'description',
+      content: 'Hi! I\'m Wilson. A frontend developer. 熱衷於網站開發，擅長製作動態特效互動式網站，使用 Nuxt / Vue 3 / Vite 做開發。'
+    },
+    {
+      name: 'keywords',
+      content: 'Wilson Wu / web design / frontend development / personal website / works / side projects / nuxt.js / vue 3'
+    },
+    {
+      name: 'canonical',
+      content: 'https://imwilson.netlify.app/'
+    }
+  ],
 })
 
 // define Refs
