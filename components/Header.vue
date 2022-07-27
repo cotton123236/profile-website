@@ -14,9 +14,9 @@ onMounted(() => {
 <template>
   <header class="space-lr">
     <div class="container">
-      <nuxt-link class="logo" to="/">
+      <div class="logo" data-anchor-target="">
         <img src="@/assets/images/logo.svg" alt="">
-      </nuxt-link>
+      </div>
       <nav>
         <div class="link" data-anchor-target=".about-anchor" data-cotton="explore">
           <span>ABOUT</span>
