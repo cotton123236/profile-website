@@ -18,6 +18,7 @@ onMounted(() => {
 
 <template>
   <div class="__nuxt-wrapper">
+    <h1 class="sr-only">Wilson's Profile & Works</h1>
     <Header />
     <Menu />
     <slot></slot>

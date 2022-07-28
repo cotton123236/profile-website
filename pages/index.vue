@@ -370,12 +370,12 @@ onMounted(() => {
                 </div>
                 <div class="text-box">
                   <div class="note">{{ about.note }}</div>
-                  <div class="name">
+                  <h2 class="name">
                     <span class="tw">{{ about.nameTw }}</span>
                     <span class="en">{{ about.nameEn }}</span>
-                  </div>
+                  </h2>
                   <div class="slash">/</div>
-                  <div class="slogan">{{ about.slogan }}</div>
+                  <h3 class="slogan">{{ about.slogan }}</h3>
                   <p v-html="about.brief"></p>
                 </div>
               </div>
@@ -433,14 +433,6 @@ onMounted(() => {
         </div>
       </div>
     </section>
-    <!-- skills -->
-    <!-- <section class="skills space-lr">
-      <div class="container">
-        <div class="block-terms">
-          <div class="note">SKILLS</div>
-        </div>
-      </div>
-    </section> -->
     <!-- contact -->
     <section class="contact space-lr">
       <div class="container">
