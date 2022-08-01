@@ -337,6 +337,7 @@ onMounted(() => {
         <video class="image desktop" src="@/assets/images/index/intro_video.mp4" ref="introVideo" muted autoplay loop playsinline></video>
         <img class="image tablet" src="@/assets/images/index/intro_pad.jpg" alt="">
         <img class="image mobile" src="@/assets/images/index/intro_phone.jpg" alt="">
+        <img class="image bg" src="@/assets/images/index/intro_bg.png" alt="">
         <div class="image-cover"></div>
       </div>
     </div>
