@@ -46,7 +46,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <li class="each-work" ref="parallaxWrap">
+  <li class="each-work" ref="parallaxWrap" data-aos>
     <a :href="work.href" target="_blank" data-cotton="explore">
       <div class="photo-box">
         <div class="photo" ref="parallaxImage" :style="{transform: `translate3d(${translateX}px, 0, 0)`}">

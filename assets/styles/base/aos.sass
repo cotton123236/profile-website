@@ -15,3 +15,22 @@
       display: inline-block
       opacity: 0
       transform: translate(-100%, 0)
+
+.each-work
+  &[data-aos]
+    opacity: 0
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0)
+    &.aos-animate
+      opacity: 1
+      clip-path: polygon(0 0, 100% 0, 100% 115%, 0 100%)
+      transition: opacity var(--trans-l) var(--trans-timing), clip-path var(--trans-l) var(--trans-timing)
+
+.each-project
+  &[data-aos]
+    opacity: 0
+    transform: translate(0, 50px)
+    &.aos-animate
+      opacity: 1
+      transform: translate(0, 0)
+      transition: opacity var(--trans-m), transform var(--trans-m)
+

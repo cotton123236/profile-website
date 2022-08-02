@@ -382,14 +382,16 @@ section.projects
     counter-reset: num
     margin-top: 60px
   .each-project
-    transition: opacity var(--trans-m)
-    border-bottom: 1px solid #999
-    border-top: 1px solid #999
-    opacity: .9
     &:first-child
       margin-top: -1px
     &.is-disable
-      opacity: .2
+      .inner
+        opacity: .2
+    .inner
+      border-bottom: 1px solid #999
+      border-top: 1px solid #999
+      opacity: .9
+      transition: opacity var(--trans-m)
     a
       display: flex
       align-items: flex-end
@@ -480,12 +482,16 @@ section.projects
 section.figure
   padding-top: clamp(100px, 20vh, 240px)
   padding-bottom: clamp(100px, 20vh, 240px)
-  .photo-box
+  overflow: hidden
+  .block-content
     position: relative
     width: 80%
+    // +rwdmax(1280)
+    //   width: 85%
+  .photo-box
+    position: relative
+    z-index: 1
     overflow: hidden
-    +rwdmax(1280)
-      width: 85%
     &::before
       padding-bottom: 56.25%
       +pseudo($pos: static)
@@ -494,12 +500,26 @@ section.figure
       +rwdmax(767)
         padding-bottom: 150%
   .photo
+    z-index: 1
     filter: grayscale(.4)
     +posFill($h: 160%, $top: -60%)
     img
       +fit
       +rwdmax(767)
         object-position: 30% center
+  .term
+    position: absolute
+    right: 0
+    top: 75%
+    font-size: clamp(32px, 5vw, 50px)
+    line-height: 1.2
+    letter-spacing: .02em
+    text-align: right
+    &.inside
+      z-index: 2
+      color: var(--white)
+    &.outside
+      z-index: -1
 
 // contact
 section.contact

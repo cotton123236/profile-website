@@ -19,18 +19,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <li class="each-project">
-    <a :href="project.href" target="_blank" data-cotton="explore">
-      <div class="info">
-        <div class="title">{{ project.title }}</div>
-        <div class="brief" v-html="project.brief"></div>
-      </div>
-      <div class="tech" v-html="project.tech"></div>
-    </a>
-    <!-- <div class="photo-box" ref="projectPhoto">
-      <div class="photo">
-        <img :src="project.image" alt="">
-      </div>
-    </div> -->
+  <li class="each-project" data-aos>
+    <div class="inner">
+      <a :href="project.href" target="_blank" data-cotton="explore">
+        <div class="info">
+          <div class="title">{{ project.title }}</div>
+          <div class="brief" v-html="project.brief"></div>
+        </div>
+        <div class="tech" v-html="project.tech"></div>
+      </a>
+    </div>
   </li>
 </template>

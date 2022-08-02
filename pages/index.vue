@@ -45,6 +45,7 @@ const projectUl = ref(null)
 const figureContainer = ref(null)
 const figureImage = ref(null)
 const figureTranslate = ref(0)
+
 const { about, works, projects } = storeToRefs(indexStore)
 const { updateIndexData } = indexStore
 
@@ -151,6 +152,24 @@ const useFigureParallax = () => {
         const diff = imageHeight - containerHeight
         figureTranslate.value = diff * self.progress
       }
+    }
+  })
+  gsap.to('.term.inside', {
+    x: '60%',
+    scrollTrigger: {
+      trigger: figureContainer.value,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true
+    }
+  })
+  gsap.to('.term.outside', {
+    x: '60%',
+    scrollTrigger: {
+      trigger: figureContainer.value,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true
     }
   })
 }
@@ -424,14 +443,18 @@ onMounted(() => {
     </section>
     <!-- figure -->
     <section class="figure">
-      <div class="photo-box" ref="figureContainer">
-        <div
-          class="photo"
-          ref="figureImage"
-          :style="{ transform: `translate3d(0, ${figureTranslate}px, 0)` }"
-        >
-          <img src="@/assets/images/index/figure.jpg" alt="">
+      <div class="block-content">
+        <div class="photo-box" ref="figureContainer">
+          <div
+            class="photo"
+            ref="figureImage"
+            :style="{ transform: `translate3d(0, ${figureTranslate}px, 0)` }"
+          >
+            <img src="@/assets/images/index/figure.jpg" alt="">
+          </div>
+          <div class="term inside">BE CREATIVE</div>
         </div>
+        <div class="term outside">BE CREATIVE</div>
       </div>
     </section>
     <!-- contact -->
